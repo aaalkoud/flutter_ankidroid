@@ -1,6 +1,6 @@
 /// This type is basically a wrapper over a future that could throw.
-/// If we await this.asValue(), we could either get a value, or a null.
-/// If we await this.asError(), we could either get an error, or a null.
+/// If we await this.asValue(), we could either get a value, or null.
+/// If we await this.asError(), we could either get an error, or null.
 /// The <T> is only here for me to annotate what the type of value produced
 /// by this future is. In a previous impl, this was a Future<Result<T>>, 
 /// with Result from the async package, but that can't be sent over isolates.

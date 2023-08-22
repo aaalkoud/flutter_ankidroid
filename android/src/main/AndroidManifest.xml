@@ -1,0 +1,5 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.aaalkoud.ankidroid">
+  <queries><package android:name="com.ichi2.anki"/></queries>
+  <uses-permission android:name="com.ichi2.anki.permission.READ_WRITE_DATABASE"/>
+</manifest>

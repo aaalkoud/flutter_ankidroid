@@ -1,6 +1,6 @@
 # flutter_ankidroid
 
-This plugin is a flutter wrapper over the [java ankidroid api](https://github.com/ankidroid/Anki-Android/wiki/AnkiDroid-API). 
+This plugin is a flutter wrapper over the [java AnkiDroid API](https://github.com/ankidroid/Anki-Android/wiki/AnkiDroid-API). 
 
 # Before Starting
 

@@ -17,7 +17,7 @@ In the opening `<Application...>` tag, remove the line `android:label="..."`. Ap
 Create an Ankidroid instance with its own isolate by running this:
 
 ```dart
-final anki = await Ankidroid.createAnkiIsolate()!;
+final anki = await Ankidroid.createAnkiIsolate();
 ```
 
 The above line also requests permission to use AnkiDroid's database through the static `askForPermission()` method. Then you could do:

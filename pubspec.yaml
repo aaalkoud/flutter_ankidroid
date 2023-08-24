@@ -1,11 +1,7 @@
 name: flutter_ankidroid
 description: A flutter wrapper over the java AnkiDroid API.
-version: 0.1.1
+version: 0.8.0
 repository: https://github.com/aaalkoud/flutter_ankidroid/
-
-platforms: 
-  android:
-
 
 environment:
   sdk: '>=3.0.5 <4.0.0'
@@ -14,18 +10,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  plugin_platform_interface: ^2.0.2
-  async: ^2.11.0
   flutter_isolate: ^2.0.4
-
+  async: ^2.11.0
+  request_permission: ^2.1.4
 
 dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
-
   plugin:
     platforms:
       android:
-        package: com.aaalkoud.ankidroid
-        pluginClass: AnkidroidPlugin
+        package: com.aaalkoud.flutter_ankidroid
+        pluginClass: FlutterAnkidroidPlugin

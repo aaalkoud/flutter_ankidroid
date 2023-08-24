@@ -1,4 +1,4 @@
-group 'com.aaalkoud.ankidroid'
+group 'com.aaalkoud.flutter_ankidroid'
 version '1.0-SNAPSHOT'
 
 buildscript {
@@ -45,9 +45,7 @@ android {
     }
 }
 
-repositories {
-    maven { url 'https://jitpack.io' }
-}
+repositories { maven { url 'https://jitpack.io' } }
 
 dependencies {
     implementation 'com.github.ankidroid:Anki-Android:api-v1.1.0'

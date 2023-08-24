@@ -1,4 +1,4 @@
-package com.aaalkoud.ankidroid_example
+package com.aaalkoud.flutter_ankidroid_example
 
 import io.flutter.embedding.android.FlutterActivity
 

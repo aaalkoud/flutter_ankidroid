@@ -1,6 +1,6 @@
-name: ankidroid_example
-description: Demonstrates how to use the ankidroid plugin.
-publish_to: 'none' 
+name: flutter_ankidroid_example
+description: Demonstrates how to use the flutter_ankidroid plugin.
+publish_to: 'none'
 
 environment:
   sdk: '>=3.0.5 <4.0.0'
@@ -12,6 +12,7 @@ dependencies:
   flutter_ankidroid:
     path: ../
 
+dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:

@@ -1,54 +1,42 @@
-package com.aaalkoud.ankidroid
+package com.aaalkoud.flutter_ankidroid
 
 import android.content.Intent
 import android.content.Context
-import android.app.Activity
 import android.content.pm.PackageManager
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import java.io.File
 
 import com.ichi2.anki.api.AddContentApi
 
-import androidx.annotation.NonNull
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-
 import io.flutter.embedding.engine.plugins.FlutterPlugin
-import io.flutter.embedding.engine.plugins.activity.ActivityAware
-import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 
-/** AnkidroidPlugin */
-class AnkidroidPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
-  /// The MethodChannel that will the communication between Flutter and native Android
-  ///
-  /// This local reference serves to register the plugin with the Flutter Engine and unregister it
-  /// when the Flutter Engine is detached from the Activity
+/** FlutterAnkidroidPlugin */
+class FlutterAnkidroidPlugin: FlutterPlugin, MethodCallHandler {
+  
   private lateinit var channel : MethodChannel
   private lateinit var context: Context
-  private lateinit var activity: Activity
   private lateinit var api : AddContentApi
 
-  override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "ankidroid")
+  override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flutter_ankidroid")
     context = flutterPluginBinding.applicationContext
     api = AddContentApi(context)
     channel.setMethodCallHandler(this)
   }
 
-  override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-    val granted = ContextCompat.checkSelfPermission(context, "com.ichi2.anki.permission.READ_WRITE_DATABASE")
-    if (granted != PackageManager.PERMISSION_GRANTED) {
-      ActivityCompat.requestPermissions(activity, arrayOf("com.ichi2.anki.permission.READ_WRITE_DATABASE"), 1)
+  override fun onMethodCall(call: MethodCall, result: Result) {
+    val permission = ContextCompat.checkSelfPermission(context, "com.ichi2.anki.permission.READ_WRITE_DATABASE")
+    if (permission != PackageManager.PERMISSION_GRANTED) {
+      result.error("Permission to use and modify AnkiDroid database not granted!", "Permission to use and modify AnkiDroid database not granted!", null)
     }
 
     when (call.method) {
-      "test" -> {
-        result.success("Test Successful!")
-      }
+      "test" -> { result.success("Test Successful!") }
 
       "addNote" -> {
         val modelId = call.argument<Long>("modelId")!!
@@ -233,23 +221,7 @@ class AnkidroidPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
     }
   }
 
-  override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+  override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
     channel.setMethodCallHandler(null)
-  }
-
-  override fun onDetachedFromActivity() {
-    TODO("Not yet implemented")
-  }
-
-  override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
-    TODO("Not yet implemented")
-  }
-
-  override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-    activity = binding.activity;
-  }
-
-  override fun onDetachedFromActivityForConfigChanges() {
-    TODO("Not yet implemented")
   }
 }

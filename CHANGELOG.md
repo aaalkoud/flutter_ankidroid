@@ -1,3 +1,7 @@
+## 0.8.0
+
+* ok so api will most probably stay like this, but i leave 0.9 possible. imma use the plugin for a bit and if i dont encounter bugs ill make it 1.0.0
+
 ## 0.1.1
 
 * fixed some values in pubspec

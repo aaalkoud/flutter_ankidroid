@@ -10,7 +10,7 @@ Add `repositories { maven { url "https://jitpack.io" } }` to the end of the file
 
 ## 2. Edit your project's `android/app/src/main/AndroidManifest.xml`
 
-In the opening `<Application...>` tag, remove the line `android:label="..."`. App doesn't compile without this. Idk y tho. 
+In the opening `<manifest...>` tag: add `xmlns:tools="http://schemas.android.com/tools"` to the end, just after the other `xmlns` thingy. Then in the `<Application...>` tag, add `tools:replace="android:label"` above `android:label="..."`. This is because the AnkiDroid java API has an `AndroidManifest.xml` with a set value for the label, but we want to use our own label, so we do `tools:replace`.
 
 # Usage
 
